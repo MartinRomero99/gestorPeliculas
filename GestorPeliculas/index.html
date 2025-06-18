@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Películas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body class="container py-4">
+    <h1 class="mb-4">Gestor de Películas</h1>
+    <!-- Sección de Registro -->
+    <div class="row-mb-4">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header bg-arena">
+                    <h4>Registro de Películas</h4>
+                </div>
+                <div class="card-body">
+                    <form id="formularioRegistro" class="row g-3">
+                        <div class="col-md-6">
+                            <label for="titulo" class="form-label">Título*</label>
+                            <input type="text" class="form-control" id="titulo" minlength="2" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="director" class="form-label">Director*</label>
+                            <input type="text" class="form-control" id="director" minlength="3" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="anio" class="form-label">Año de estreno*</label>
+                            <input type="number" class="form-control" id="anio" min="1900" max="2025" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="duracion" class="form-label">Duración (min)*</label>
+                            <input type="number" class="form-control" id="duracion" min="1" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="genero" class="form-label">Género*</label>
+                            <select class="form-select" id="genero" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="acción">Acción</option>
+                                <option value="drama">Drama</option>
+                                <option value="comedia">Comedia</option>
+                                <option value="animación">Animación</option>
+                                <option value="ciencia ficción">Ciencia ficción</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">En cartelera*</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cartelera" id="carteleraSi"
+                                    value="Sí" checked>
+                                <label class="form-check-label" for="carteleraSi">Sí</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cartelera" id="carteleraNo"
+                                    value="No">
+                                <label class="form-check-label" for="carteleraNo">No</label>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-marron me-2">Registrar Película</button>
+                            <small class="form-text text-muted d-block mt-2">* Campos obligatorios</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listado de Películas -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-arena d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Listado de Películas</h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="tablaPeliculas" class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Director</th>
+                                    <th>Año</th>
+                                    <th>Duración</th>
+                                    <th>Género</th>
+                                    <th>Cartelera</th>
+                                    <th>Antigüedad</th>
+                                    <th>Puntuación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Filas generadas dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Inferior -->
+    <div class="row">
+        <!-- Estadísticas -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-arena">
+                    <h4>Estadísticas del Catálogo</h4>
+                </div>
+                <div class="card-body" id="estadisticas">
+                    <!-- Contenido dinámico -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Calificar Película -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-arena">
+                    <h4>Calificar Película</h4>
+                </div>
+                <div class="card-body">
+                    <form id="formularioPuntuacion">
+                        <div class="mb-3">
+                            <label for="dniUsuario" class="form-label">DNI*</label>
+                            <input type="number" class="form-control" id="dniUsuario" min="1" max="99999999" required>
+                            <small id="usuarioActual" class="text-muted"></small> <!-- Mensaje de usuario activo -->
+                        </div>
+                        <div class="mb-3">
+                            <label for="peliculaSelect" class="form-label">Película*</label>
+                            <select class="form-select" id="peliculaSelect" required>
+                                <option value="">Seleccionar película...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="puntuacion" class="form-label">Puntuación (1-10)*</label>
+                            <input type="number" class="form-control" id="puntuacion" min="1" max="10" required>
+                        </div>
+                        <button type="submit" class="btn btn-marron w-100">Calificar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="gestionPeliculas.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
